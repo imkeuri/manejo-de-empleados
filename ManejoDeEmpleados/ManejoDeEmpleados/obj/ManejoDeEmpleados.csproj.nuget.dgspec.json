@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj": {}
+    "C:\\Users\\keury\\Desktop\\manejo-de-empleados-dev\\manejo-de-empleados-dev\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj": {
+    "C:\\Users\\keury\\Desktop\\manejo-de-empleados-dev\\manejo-de-empleados-dev\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
+        "projectUniqueName": "C:\\Users\\keury\\Desktop\\manejo-de-empleados-dev\\manejo-de-empleados-dev\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
         "projectName": "ManejoDeEmpleados",
-        "projectPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
-        "packagesPath": "C:\\Users\\lisan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\obj\\",
+        "projectPath": "C:\\Users\\keury\\Desktop\\manejo-de-empleados-dev\\manejo-de-empleados-dev\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
+        "packagesPath": "C:\\Users\\keury\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\keury\\Desktop\\manejo-de-empleados-dev\\manejo-de-empleados-dev\\ManejoDeEmpleados\\ManejoDeEmpleados\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lisan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\keury\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -71,6 +71,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.12, 5.0.12]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -79,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
