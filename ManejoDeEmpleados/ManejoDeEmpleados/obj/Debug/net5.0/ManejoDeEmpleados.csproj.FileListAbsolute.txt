@@ -171,3 +171,4 @@ C:\Users\keury\Desktop\manejo-de-empleados-dev\manejo-de-empleados-dev\ManejoDeE
 C:\Users\keury\Desktop\manejo-de-empleados-dev\manejo-de-empleados-dev\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Pages\log\Login.cshtml.g.cs
 C:\Users\keury\Desktop\manejo-de-empleados-dev\manejo-de-empleados-dev\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Pages\log\Register.cshtml.g.cs
 C:\Users\keury\Desktop\manejo-de-empleados-dev\manejo-de-empleados-dev\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Pages\Administracion\Dashboard.cshtml.g.cs
+C:\Users\keury\Desktop\manejo-de-empleados-dev\manejo-de-empleados-dev\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Pages\Administracion\RegistrarEmpleado.cshtml.g.cs
