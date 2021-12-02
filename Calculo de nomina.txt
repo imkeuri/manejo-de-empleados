@@ -1,0 +1,34 @@
+
+cooperativa = 5% * sueldo bruto / 100
+
+comision = empleado.comision * sueldo bruto / 100
+
+cafeteria = empleado.cafeteria
+
+afp =  2.87% * sueldo bruto / 100
+
+sfs = 3.04 * sueldo bruto / 100
+
+sueldo neto  = sueldo bruto - cooperativa - cafeteria - afp - sfs + comision
+
+ISR = (sueldo Bruto - sfs - afp) * 12
+
+
+
+calculo del ISR
+-----------------------------------------------------------------------------------
+
+Para 2021 están establecidas de este modo:
+
+Escala anual	                 Tasa
+
+ si ISR = Hasta RD$416.220,00	         Exento
+
+ si ISR = RD$416.220,01 a RD$624.329,00	 15% del excedente de RD$416.220,01 si entra en esta scala entonces = (isr - 416.220,01 * 15% / 100) / 12
+
+ si ISR = RD$624.329,01 a RD$867.123,00	 RD$31.216,00 más 20% del excedente de RD$624.329,01 si entra en esta scala entonces = (isr - 624.329,01  * 20% / 100)+ 31,216.00 / 12
+
+ Si ISR = De RD$867.123,01 en adelante	 RD$79.776 más el 25% del excedente de RD$867.123,01 si entra en esta scala entonces = (isr - 867.123,01 * 25% / 100) 79,776 / 12
+
+
+

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f48c8394-faab-4b76-a60d-a7ddd8b48be0": {
+      "ProjectGuid": "f48c8394-faab-4b76-a60d-a7ddd8b48be0",
+      "DisplayName": "WebApi_Mysql.Net(5)",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
