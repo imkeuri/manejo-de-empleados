@@ -7222,11 +7222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
+      "projectUniqueName": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
       "projectName": "ManejoDeEmpleados",
-      "projectPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
+      "projectPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
       "packagesPath": "C:\\Users\\lisan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\ManejoDeEmpleados\\ManejoDeEmpleados\\obj\\",
+      "outputPath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lisan\\AppData\\Roaming\\NuGet\\NuGet.Config",

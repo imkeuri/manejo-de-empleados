@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8okCDBGJBnh5AGheOigOz6BuvJWBUH2cu+zxoUst5Nh038C8/lqKdJVLxp6Ww31No3Jci0pTcp5G0HPN+8Q5fg==",
+  "dgSpecHash": "cnxiJQwlWPdEZRaKGzSUcKLrpjbvHcFYobhv/I+OtAAFE9vpt28ZyNvtummuwOVn7Dnhc3zg3f5nsqw9hOYcxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
+  "projectFilePath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lisan\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lisan\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
