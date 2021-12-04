@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManejoDeEmpleados.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ManejoDeEmpleados.Controllers
 {
@@ -19,6 +20,7 @@ namespace ManejoDeEmpleados.Controllers
         }
 
         // GET: Empleadoes
+        [Authorize(Roles = "admin")] 
         public async Task<IActionResult> Index()
         {
             var manejoempleadosContext = _context.Empleados.Include(e => e.DepartamentoPuesto);
