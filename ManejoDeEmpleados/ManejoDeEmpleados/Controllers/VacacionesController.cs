@@ -6,29 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManejoDeEmpleados.Models;
-using Microsoft.AspNetCore.Authorization;
-using ManejoDeEmpleados.Services;
 
 namespace ManejoDeEmpleados.Controllers
 {
-    public class EmpleadoesController : Controller
+    public class VacacionesController : Controller
     {
         private readonly manejoempleadosContext _context;
 
-        public EmpleadoesController(manejoempleadosContext context)
+        public VacacionesController(manejoempleadosContext context)
         {
             _context = context;
         }
 
-        // GET: Empleadoes
-        [Authorize(Roles = "admin")] 
+        // GET: Vacaciones
         public async Task<IActionResult> Index()
         {
-            var manejoempleadosContext = _context.Empleados.Include(e => e.DepartamentoPuesto);
+            var manejoempleadosContext = _context.Vacaciones.Include(v => v.Empleado);
             return View(await manejoempleadosContext.ToListAsync());
         }
 
-        // GET: Empleadoes/Details/5
+        // GET: Vacaciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,46 +33,42 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound();
             }
 
-            var empleado = await _context.Empleados
-                .Include(e => e.DepartamentoPuesto)
+            var vacacione = await _context.Vacaciones
+                .Include(v => v.Empleado)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (empleado == null)
+            if (vacacione == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(vacacione);
         }
 
-        // GET: Empleadoes/Create
+        // GET: Vacaciones/Create
         public IActionResult Create()
         {
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre");
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido");
             return View();
         }
 
-        // POST: Empleadoes/Create
+        // POST: Vacaciones/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
+        public async Task<IActionResult> Create([Bind("Id,InicioVacaciones,HastaVacaciones,EmpleadoId")] Vacacione vacacione)
         {
             if (ModelState.IsValid)
             {
-                ServiceEmpleado service = new();
-                ServiceNomina SerNomina = new();
-                service.GenerarSecuencia(empleado);
-                _context.Add(empleado);
+                _context.Add(vacacione);
                 await _context.SaveChangesAsync();
-                SerNomina.AddNomina(empleado);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
-            return View(empleado);
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido", vacacione.EmpleadoId);
+            return View(vacacione);
         }
 
-        // GET: Empleadoes/Edit/5
+        // GET: Vacaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,23 +76,23 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound();
             }
 
-            var empleado = await _context.Empleados.FindAsync(id);
-            if (empleado == null)
+            var vacacione = await _context.Vacaciones.FindAsync(id);
+            if (vacacione == null)
             {
                 return NotFound();
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
-            return View(empleado);
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido", vacacione.EmpleadoId);
+            return View(vacacione);
         }
 
-        // POST: Empleadoes/Edit/5
+        // POST: Vacaciones/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,InicioVacaciones,HastaVacaciones,EmpleadoId")] Vacacione vacacione)
         {
-            if (id != empleado.Id)
+            if (id != vacacione.Id)
             {
                 return NotFound();
             }
@@ -108,12 +101,12 @@ namespace ManejoDeEmpleados.Controllers
             {
                 try
                 {
-                    _context.Update(empleado);
+                    _context.Update(vacacione);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpleadoExists(empleado.Id))
+                    if (!VacacioneExists(vacacione.Id))
                     {
                         return NotFound();
                     }
@@ -124,11 +117,11 @@ namespace ManejoDeEmpleados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
-            return View(empleado);
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido", vacacione.EmpleadoId);
+            return View(vacacione);
         }
 
-        // GET: Empleadoes/Delete/5
+        // GET: Vacaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,31 +129,31 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound();
             }
 
-            var empleado = await _context.Empleados
-                .Include(e => e.DepartamentoPuesto)
+            var vacacione = await _context.Vacaciones
+                .Include(v => v.Empleado)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (empleado == null)
+            if (vacacione == null)
             {
                 return NotFound();
             }
 
-            return View(empleado);
+            return View(vacacione);
         }
 
-        // POST: Empleadoes/Delete/5
+        // POST: Vacaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empleado = await _context.Empleados.FindAsync(id);
-            _context.Empleados.Remove(empleado);
+            var vacacione = await _context.Vacaciones.FindAsync(id);
+            _context.Vacaciones.Remove(vacacione);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpleadoExists(int id)
+        private bool VacacioneExists(int id)
         {
-            return _context.Empleados.Any(e => e.Id == id);
+            return _context.Vacaciones.Any(e => e.Id == id);
         }
     }
 }

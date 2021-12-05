@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AcxqZMHYSfZUpzHd7EdvorzRib0kRv4atKVqlGb8TdHHvKP1IFDxp0A923ewMn558qdsObV36ycCR9vFaRxWLQ==",
+  "dgSpecHash": "Qj/BkCt8eNpOTPfyNxkCzZYHGuZUrvjMA/rzBCKchX5GycFi9XMf6o++QAm7hgM2p/wGtWUTwiAQOrD5d8t2MQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\lisan\\OneDrive\\Escritorio\\ITLA\\TAREAS C6\\Ing Software\\manejo-de-empleados\\ManejoDeEmpleados\\ManejoDeEmpleados\\ManejoDeEmpleados.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\lisan\\.nuget\\packages\\bootstrap\\5.1.2\\bootstrap.5.1.2.nupkg.sha512",
     "C:\\Users\\lisan\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lisan\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\lisan\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
