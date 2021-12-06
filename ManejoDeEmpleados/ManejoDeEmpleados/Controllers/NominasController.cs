@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManejoDeEmpleados.Models;
+using ManejoDeEmpleados.Services;
 
 namespace ManejoDeEmpleados.Controllers
 {
@@ -19,23 +20,33 @@ namespace ManejoDeEmpleados.Controllers
         }
 
         // GET: Nominas
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var manejoempleadosContext = _context.Nominas.Include(n => n.Empleado);
-            return View(await manejoempleadosContext.ToListAsync());
+            return View();
         }
 
         // GET: Nominas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? codigo)
         {
-            if (id == null)
+
+            ServiceEmpleado service = new();
+
+            if (codigo == null)
             {
+                return NotFound();
+            }
+
+
+            var empleado = service.GetEmpleadoByCode(codigo);
+
+            if(empleado == null) {
                 return NotFound();
             }
 
             var nomina = await _context.Nominas
                 .Include(n => n.Empleado)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.EmpleadoId == empleado.Id);
+            
             if (nomina == null)
             {
                 return NotFound();

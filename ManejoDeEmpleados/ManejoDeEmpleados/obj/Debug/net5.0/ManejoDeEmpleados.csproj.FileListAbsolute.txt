@@ -206,8 +206,5 @@ C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-emplead
 C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\Details.cshtml.g.cs
 C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\Edit.cshtml.g.cs
 C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\Index.cshtml.g.cs
-C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Nominas\Create.cshtml.g.cs
-C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Nominas\Delete.cshtml.g.cs
 C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Nominas\Details.cshtml.g.cs
-C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Nominas\Edit.cshtml.g.cs
 C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Nominas\Index.cshtml.g.cs

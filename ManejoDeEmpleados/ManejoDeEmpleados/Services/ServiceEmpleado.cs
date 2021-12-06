@@ -34,5 +34,12 @@ namespace ManejoDeEmpleados.Services
             string secuencia = $"{(empleado.Nombre[0]+empleado.Nombre[1]+empleado.Nombre[2]).ToString().ToUpper()}-{digitos}";
             empleado.Codigo = secuencia;
         }
+
+        public Empleado GetEmpleadoByCode(string codigo)
+        {
+            return db.Empleados.Where(a => a.Codigo == codigo).FirstOrDefault();
+        }
+
+
     }
 }

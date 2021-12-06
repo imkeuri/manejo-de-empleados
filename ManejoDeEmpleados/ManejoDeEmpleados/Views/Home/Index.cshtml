@@ -1,25 +1,41 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using ManejoDeEmpleados.Areas.Identity.Data
+
+@inject SignInManager<ManejoDeEmpleadosUser> SignInManager
+@inject UserManager<ManejoDeEmpleadosUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
-<body style="background: #0f0c29; background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); background: linear-gradient(to right, #24243e, #302b63, #0f0c29);">
-    <div class="contianer d-flex">
-        <div class="card m-3 w-50">
-            <img src="https://img.freepik.com/foto-gratis/concepto-formulario-orden-compra-nomina_53876-127731.jpg?size=338&ext=jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <a href="/Nominas">
-                    <h5 class="card-title">Visualizar Nomina</h5>
-                    <p class="card-text">En esta seccion el Usuario puede consultar su nomina ingresando su codigo de empleado.</p>
-                </a>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>BIENVENIDO ADMIN</h1>
+}
+else
+
+{
+    <body style="background: #0f0c29; background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); background: linear-gradient(to right, #24243e, #302b63, #0f0c29);">
+        <div class="contianer d-flex mt-5">
+            <div class="card m-3 w-50">
+                <img src="https://img.freepik.com/foto-gratis/concepto-formulario-orden-compra-nomina_53876-127731.jpg?size=338&ext=jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="/Nominas" class="text-decoration-none">
+                        <h5 class="card-title">Visualizar Nomina</h5>
+                        <p class="card-text">En esta seccion el Usuario puede consultar su nomina ingresando su codigo de empleado.</p>
+                    </a>
+                </div>
+            </div>
+            <div class="card m-3 w-50">
+                <img src="https://image.freepik.com/foto-gratis/retrato-hermosa-joven-asiatica-sentada-hamaca-alrededor-mar-playa-oceano-relajarse_74190-8915.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a href="/Vacaciones" class="text-decoration-none">
+                        <h5 class="card-title">Solicitar Vacaciones</h5>
+                        <p class="card-text">En esta seccion el Usuario puede solicitar sus vacaciones ingresando su codigo de empleado.</p>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="card m-3 w-50">
-            <img src="https://image.freepik.com/foto-gratis/retrato-hermosa-joven-asiatica-sentada-hamaca-alrededor-mar-playa-oceano-relajarse_74190-8915.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <a href="/Vacaciones">
-                    <h5 class="card-title">Solicitar Vacaciones</h5>
-                    <p class="card-text">En esta seccion el Usuario puede solicitar sus vacaciones ingresando su codigo de empleado.</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
+}
+
