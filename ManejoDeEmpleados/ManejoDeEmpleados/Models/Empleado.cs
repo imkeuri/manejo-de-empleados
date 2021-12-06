@@ -9,7 +9,7 @@ namespace ManejoDeEmpleados.Models
     {
         public Empleado()
         {
-            Nominas = new HashSet<Nomina>();
+            ConsumoEmpleados = new HashSet<ConsumoEmpleado>();
             Vacaciones = new HashSet<Vacacione>();
         }
 
@@ -19,12 +19,12 @@ namespace ManejoDeEmpleados.Models
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public int DepartamentoPuestoId { get; set; }
+        public int DepartamentoclId { get; set; }
         public DateTime FechaContratacion { get; set; }
         public int SueldoEmpleado { get; set; }
 
-        public virtual Departamentopuesto DepartamentoPuesto { get; set; }
-        public virtual ICollection<Nomina> Nominas { get; set; }
+        public virtual Departamentocl Departamentocl { get; set; }
+        public virtual ICollection<ConsumoEmpleado> ConsumoEmpleados { get; set; }
         public virtual ICollection<Vacacione> Vacaciones { get; set; }
     }
 }

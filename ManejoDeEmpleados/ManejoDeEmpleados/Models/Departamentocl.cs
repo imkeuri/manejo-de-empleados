@@ -10,6 +10,7 @@ namespace ManejoDeEmpleados.Models
         public Departamentocl()
         {
             Departamentopuestos = new HashSet<Departamentopuesto>();
+            Empleados = new HashSet<Empleado>();
         }
 
         public int Id { get; set; }
@@ -17,5 +18,6 @@ namespace ManejoDeEmpleados.Models
         public string Siglas { get; set; }
 
         public virtual ICollection<Departamentopuesto> Departamentopuestos { get; set; }
+        public virtual ICollection<Empleado> Empleados { get; set; }
     }
 }

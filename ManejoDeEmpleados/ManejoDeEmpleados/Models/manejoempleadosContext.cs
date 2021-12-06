@@ -17,10 +17,10 @@ namespace ManejoDeEmpleados.Models
         {
         }
 
+        public virtual DbSet<ConsumoEmpleado> ConsumoEmpleados { get; set; }
         public virtual DbSet<Departamentocl> Departamentocls { get; set; }
         public virtual DbSet<Departamentopuesto> Departamentopuestos { get; set; }
         public virtual DbSet<Empleado> Empleados { get; set; }
-        public virtual DbSet<Nomina> Nominas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Vacacione> Vacaciones { get; set; }
         public virtual DbSet<Vacacionesestado> Vacacionesestados { get; set; }
@@ -30,7 +30,7 @@ namespace ManejoDeEmpleados.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql"));
+                optionsBuilder.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql"));
             }
         }
 
@@ -39,9 +39,28 @@ namespace ManejoDeEmpleados.Models
             modelBuilder.HasCharSet("utf8mb4")
                 .UseCollation("utf8mb4_general_ci");
 
+            modelBuilder.Entity<ConsumoEmpleado>(entity =>
+            {
+                entity.ToTable("consumo_empleado");
+
+                entity.HasIndex(e => e.EmpleadoId, "FK_Empleado_ConsumoEmpleado_ConsumoEmpleadoId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.EmpleadoId).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.Empleado)
+                    .WithMany(p => p.ConsumoEmpleados)
+                    .HasForeignKey(d => d.EmpleadoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Empleado_ConsumoEmpleado_ConsumoEmpleadoId");
+            });
+
             modelBuilder.Entity<Departamentocl>(entity =>
             {
                 entity.ToTable("departamentocl");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -58,6 +77,10 @@ namespace ManejoDeEmpleados.Models
 
                 entity.HasIndex(e => e.DepartamentoId, "FK_DepartamentoPuestos_DepartamentoCL_DepartamentoId");
 
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.DepartamentoId).HasColumnType("int(11)");
+
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -73,9 +96,11 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("empleado");
 
-                entity.HasIndex(e => e.DepartamentoPuestoId, "FK_Empleado_DepartamentoPuestos_DepartamentoPuestosId");
+                entity.HasIndex(e => e.DepartamentoclId, "FK_Empleado_Departamento");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Apellido)
                     .IsRequired()
@@ -85,6 +110,8 @@ namespace ManejoDeEmpleados.Models
                     .IsRequired()
                     .HasMaxLength(100);
 
+                entity.Property(e => e.DepartamentoclId).HasColumnType("int(11)");
+
                 entity.Property(e => e.FechaContratacion).HasColumnType("date");
 
                 entity.Property(e => e.FechaNacimiento).HasColumnType("date");
@@ -93,37 +120,24 @@ namespace ManejoDeEmpleados.Models
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.SueldoEmpleado).HasColumnType("int(11)");
+
                 entity.Property(e => e.Telefono)
                     .IsRequired()
                     .HasMaxLength(25);
 
-                entity.HasOne(d => d.DepartamentoPuesto)
+                entity.HasOne(d => d.Departamentocl)
                     .WithMany(p => p.Empleados)
-                    .HasForeignKey(d => d.DepartamentoPuestoId)
+                    .HasForeignKey(d => d.DepartamentoclId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Empleado_DepartamentoPuestos_DepartamentoPuestosId");
-            });
-
-            modelBuilder.Entity<Nomina>(entity =>
-            {
-                entity.ToTable("nomina");
-
-                entity.HasIndex(e => e.EmpleadoId, "FK_Nomina_Empleado_EmpleadoId");
-
-                entity.Property(e => e.Afp).HasColumnName("AFP");
-
-                entity.Property(e => e.Isr).HasColumnName("ISR");
-
-                entity.HasOne(d => d.Empleado)
-                    .WithMany(p => p.Nominas)
-                    .HasForeignKey(d => d.EmpleadoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Nomina_Empleado_EmpleadoId");
+                    .HasConstraintName("FK_Empleado_Departamento");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("usuario");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Correo)
                     .IsRequired()
@@ -144,6 +158,10 @@ namespace ManejoDeEmpleados.Models
 
                 entity.HasIndex(e => e.EmpleadoId, "FK_Vacaciones_Empleado_EmpleadoId");
 
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.EmpleadoId).HasColumnType("int(11)");
+
                 entity.Property(e => e.HastaVacaciones).HasColumnType("date");
 
                 entity.Property(e => e.InicioVacaciones).HasColumnType("date");
@@ -161,7 +179,13 @@ namespace ManejoDeEmpleados.Models
 
                 entity.HasIndex(e => e.VacacionesId, "FK_VacacionesEstado_Vacaciones_VacionesId");
 
-                entity.Property(e => e.Estado).HasColumnName("estado");
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Estado)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("estado");
+
+                entity.Property(e => e.VacacionesId).HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Vacaciones)
                     .WithMany(p => p.Vacacionesestados)

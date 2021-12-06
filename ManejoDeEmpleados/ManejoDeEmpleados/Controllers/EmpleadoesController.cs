@@ -21,7 +21,7 @@ namespace ManejoDeEmpleados.Controllers
         // GET: Empleadoes
         public async Task<IActionResult> Index()
         {
-            var manejoempleadosContext = _context.Empleados.Include(e => e.DepartamentoPuesto);
+            var manejoempleadosContext = _context.Empleados.Include(e => e.Departamentocl);
             return View(await manejoempleadosContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace ManejoDeEmpleados.Controllers
             }
 
             var empleado = await _context.Empleados
-                .Include(e => e.DepartamentoPuesto)
+                .Include(e => e.Departamentocl)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (empleado == null)
             {
@@ -47,7 +47,7 @@ namespace ManejoDeEmpleados.Controllers
         // GET: Empleadoes/Create
         public IActionResult Create()
         {
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre");
+            ViewData["DepartamentoclId"] = new SelectList(_context.Departamentocls, "Id", "Nombre");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace ManejoDeEmpleados.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoclId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace ManejoDeEmpleados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
+            ViewData["DepartamentoclId"] = new SelectList(_context.Departamentocls, "Id", "Nombre", empleado.DepartamentoclId);
             return View(empleado);
         }
 
@@ -81,7 +81,7 @@ namespace ManejoDeEmpleados.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
+            ViewData["DepartamentoclId"] = new SelectList(_context.Departamentocls, "Id", "Nombre", empleado.DepartamentoclId);
             return View(empleado);
         }
 
@@ -90,7 +90,7 @@ namespace ManejoDeEmpleados.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoclId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
         {
             if (id != empleado.Id)
             {
@@ -117,7 +117,7 @@ namespace ManejoDeEmpleados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);
+            ViewData["DepartamentoclId"] = new SelectList(_context.Departamentocls, "Id", "Nombre", empleado.DepartamentoclId);
             return View(empleado);
         }
 
@@ -130,7 +130,7 @@ namespace ManejoDeEmpleados.Controllers
             }
 
             var empleado = await _context.Empleados
-                .Include(e => e.DepartamentoPuesto)
+                .Include(e => e.Departamentocl)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (empleado == null)
             {

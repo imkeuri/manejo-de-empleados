@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ManejoDeEmpleados.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManejoDeEmpleados
 {
@@ -24,6 +25,16 @@ namespace ManejoDeEmpleados
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    );
+            });
+            services.AddCors();
+            services.AddDbContext<manejoempleadosContext>(options => options.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")));
             services.AddControllersWithViews();
             services.AddScoped<manejoempleadosContext>();
         }
