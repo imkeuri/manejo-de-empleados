@@ -1,0 +1,59 @@
+﻿@model ManejoDeEmpleados.Models.Nomina
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Resumen de nomina</h1>
+
+<div>
+    <h4>Nomina del empleado @Html.DisplayFor(model => model.Empleado.Nombre) @Html.DisplayFor(model => model.Empleado.Apellido)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Sueldo Bruto:
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.SueldoBruto, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SueldoNeto)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.SueldoNeto, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comision)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.Comision, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Afp)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.Afp, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cafeteria)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.Cafeteria, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cooperativa)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.Cooperativa, 2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Isr)
+        </dt>
+        <dd class="col-sm-10">
+            RD$ @Math.Round(Model.Isr, 2)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver</a>
+</div>

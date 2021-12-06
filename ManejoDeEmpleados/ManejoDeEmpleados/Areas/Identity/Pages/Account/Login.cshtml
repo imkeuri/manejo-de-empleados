@@ -1,0 +1,49 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<body style="background-image: url(https://image.freepik.com/foto-gratis/persona-vista-superior-escribiendo-computadora-portatil-espacio-copia_23-2148708035.jpg); /* The image used */ background-color: #cccccc; /* Used if the image is unavailable */ height: 100%; /* You must set a specified height */ background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="d-flex justify-content-center p-5">
+        <div class="row rounded p-0 shadow-lg bg-light">
+            <div class="col-sm-8 p-0 pb-2">
+                <h2 class="text-center my-4">@ViewBag.Title.</h2>
+                <hr />
+                <div class="form-group mx-5 mt-4 h-75">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group w-75 mx-auto">
+                            <label asp-for="Input.Email" class="col-md-2 control-label p-0"></label>
+                            <div class="col-md-12 p-0">
+                                <input asp-for="Input.Email" class="form-control col-12" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group w-75 mx-auto">
+                                <label asp-for="Input.Password"></label>
+                            <div class="col-md-12 p-0">
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group mx-auto mt-2 mb-3 w-75">
+                            <div class="col-12 p-0">
+                                <input type="submit" class="btn btn-outline-primary btn-block w-75 mx-auto" value="Iniciar Sesion" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col m-0 p-0">
+                <img src="~/Images/registro.jpg" alt="..." class="img-fluid w-100 rounded-right" />
+            </div>
+        </div>
+    </div>
+</body>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
