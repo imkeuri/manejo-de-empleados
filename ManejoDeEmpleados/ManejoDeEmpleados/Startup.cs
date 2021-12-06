@@ -28,7 +28,7 @@ namespace ManejoDeEmpleados
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ManejoDeEmpleadosContext>(options =>
-                options.UseMySql("server=localhost;uid=root;pwd=Solohome;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql")));
+                options.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql")));
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<manejoempleadosContext>();
