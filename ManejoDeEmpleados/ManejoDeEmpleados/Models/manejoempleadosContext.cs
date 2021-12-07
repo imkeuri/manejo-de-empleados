@@ -377,9 +377,7 @@ namespace ManejoDeEmpleados.Models
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
-                entity.Property(e => e.Estado)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("estado");
+                entity.Property(e => e.Estado).HasColumnName("estado");
 
                 entity.Property(e => e.VacacionesId).HasColumnType("int(11)");
 

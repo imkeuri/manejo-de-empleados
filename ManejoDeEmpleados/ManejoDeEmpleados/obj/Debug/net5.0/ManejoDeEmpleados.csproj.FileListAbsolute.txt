@@ -423,4 +423,4 @@ C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmplea
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Details.cshtml.g.cs
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Edit.cshtml.g.cs
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Index.cshtml.g.cs
-C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\Index1.cshtml.g.cs
+C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\VerificarCodigo.cshtml.g.cs

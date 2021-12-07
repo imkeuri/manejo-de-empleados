@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<ManejoDeEmpleados.Models.Vacacione>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "VerificarCodigo";
 }
 <body style="background-image: url(https://image.freepik.com/foto-gratis/desenfoque-interior-hospital-clinica_74190-5207.jpg); /* The image used */ background-color: #cccccc; /* Used if the image is unavailable */ height: 100%; /* You must set a specified height */ background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class="container" style="height: 80vh">
         <div class="d-flex justify-content-center align-items-center bg-dark h-100" style="opacity: 0.8; border-radius: 50px;">
-            <form asp-action="Details" class="container h-50 w-50">
+            <form asp-action="Index" class="container h-50 w-50">
                 <div class="form-group">
                     <h1 class="text-center text-light my-3">Ingrese su codigo de Empleado</h1>
                     <input type="text" id="codigo" name="codigo" placeholder="000-000" class="form-control text-center"/>
                 </div>
                 <div class="form-group w-100">
-                    <input type="submit" value="Generar Nomina" class="btn btn-primary w-75 my-3 mx-auto d-block"/>
+                    <input type="submit" value="Solicitar Vacaciones" class="btn btn-primary w-75 my-3 mx-auto d-block"/>
                 </div>
             </form>
         </div>

@@ -19,13 +19,19 @@ namespace ManejoDeEmpleados.Controllers
             _context = context;
         }
 
+        public IActionResult VerificarCodigo()
+        {
+
+            return View();
+        }
+
         // GET: Vacaciones
         public async Task<IActionResult> Index(string? codigo)
         {
             ServiceEmpleado service = new();
             ServiceNomina SerNomina = new();
 
-            DateTime fechaTiempo = DateTime.Now;
+
 
             if (codigo == null)
             {
@@ -40,10 +46,17 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound();
             }
 
-            var Empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Id == empleado.Id);
+            var Empleado = _context.Empleados.FirstOrDefault(m => m.Id == empleado.Id);
 
+            DateTime fechaTiempo = DateTime.Now.Date;
 
-            if (Empleado.FechaContratacion.Year < fechaTiempo.Year)
+            empleado.FechaContratacion = empleado.FechaContratacion.Date;
+
+            TimeSpan time = fechaTiempo - empleado.FechaContratacion;
+
+            int dias = time.Days;
+
+            if (dias <= 365)
             {
                 return NotFound("Debes de tener por lo menos un año para poder solicitar Vacaciones");
             }
@@ -74,6 +87,7 @@ namespace ManejoDeEmpleados.Controllers
         // GET: Vacaciones/Create
         public IActionResult Create()
         {
+
             ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido");
             return View();
         }
@@ -85,11 +99,15 @@ namespace ManejoDeEmpleados.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,InicioVacaciones,HastaVacaciones,EmpleadoId")] Vacacione vacacione)
         {
+            ServiceEstadoVacaciones estadoVacaciones = new ServiceEstadoVacaciones();
+
             if (ModelState.IsValid)
             {
                 _context.Add(vacacione);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var EmpleadoE = await _context.Vacaciones.FirstOrDefaultAsync(m => m.Id == vacacione.Id);
+                estadoVacaciones.AddVacacionesEstados(EmpleadoE);
+                return RedirectToAction(nameof(VerificarCodigo));
             }
             ViewData["EmpleadoId"] = new SelectList(_context.Empleados, "Id", "Apellido", vacacione.EmpleadoId);
             return View(vacacione);
