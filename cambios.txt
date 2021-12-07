@@ -1,0 +1,6 @@
+Executed SQL Statement : Alter table `mysql`.`nomina`   
+	change `Comision` `Comision` double NULL,
+	change `Cafeteria` `Cafeteria` double NULL,
+	change `Cooperativa` `Cooperativa` boolean NULL 
+Error Number : 1264 
+Error Message: Out of range value for column 'Cooperativa' at row 1 

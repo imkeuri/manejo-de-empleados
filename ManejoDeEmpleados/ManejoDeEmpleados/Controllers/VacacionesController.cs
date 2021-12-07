@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManejoDeEmpleados.Models;
+using ManejoDeEmpleados.Services;
 
 namespace ManejoDeEmpleados.Controllers
 {
@@ -19,8 +20,34 @@ namespace ManejoDeEmpleados.Controllers
         }
 
         // GET: Vacaciones
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? codigo)
         {
+            ServiceEmpleado service = new();
+            ServiceNomina SerNomina = new();
+
+            DateTime fechaTiempo = DateTime.Now;
+
+            if (codigo == null)
+            {
+                return NotFound();
+            }
+
+
+            var empleado = service.GetEmpleadoByCode(codigo);
+
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+
+            var Empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Id == empleado.Id);
+
+
+            if (Empleado.FechaContratacion.Year < fechaTiempo.Year)
+            {
+                return NotFound("Debes de tener por lo menos un año para poder solicitar Vacaciones");
+            }
+
             var manejoempleadosContext = _context.Vacaciones.Include(v => v.Empleado);
             return View(await manejoempleadosContext.ToListAsync());
         }

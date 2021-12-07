@@ -30,6 +30,7 @@ namespace ManejoDeEmpleados.Controllers
         {
 
             ServiceEmpleado service = new();
+            ServiceNomina SerNomina = new();
 
             if (codigo == null)
             {
@@ -43,16 +44,29 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound();
             }
 
-            var nomina = await _context.Nominas
+            
+
+            var Empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Id == empleado.Id);
+
+            var consumoEmpleado = await _context.ConsumoEmpleados
+                .Include(n => n.Empleado)
+                .FirstOrDefaultAsync(x => x.EmpleadoId == empleado.Id);
+
+            var EmpleadoNomina = await _context.Nominas
                 .Include(n => n.Empleado)
                 .FirstOrDefaultAsync(m => m.EmpleadoId == empleado.Id);
-            
-            if (nomina == null)
+
+
+            if (EmpleadoNomina == null)
             {
                 return NotFound();
+            }else if (consumoEmpleado == null)
+            {
+                return NotFound("Por favor Realize un consunmo para poder ver su nomina");
             }
 
-            return View(nomina);
+            SerNomina.AddNomina(Empleado, consumoEmpleado);
+            return View(EmpleadoNomina);
         }
 
         private bool NominaExists(int id)

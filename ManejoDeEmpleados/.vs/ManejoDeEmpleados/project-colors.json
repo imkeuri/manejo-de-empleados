@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a0f356fe-dcd0-4769-a240-6bd8b9e750e8": {
+      "ProjectGuid": "a0f356fe-dcd0-4769-a240-6bd8b9e750e8",
+      "DisplayName": "ManejoDeEmpleados",
+      "ColorIndex": 0
+    },
+    "81f8a465-985b-4630-804b-5ecbd1767e33": {
+      "ProjectGuid": "81f8a465-985b-4630-804b-5ecbd1767e33",
+      "DisplayName": "ManejoDeEmpleados",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

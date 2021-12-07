@@ -21,7 +21,7 @@ namespace ManejoDeEmpleados.Controllers
         }
 
         // GET: Empleadoes
-        [Authorize(Roles = "admin")] 
+        [Authorize] 
         public async Task<IActionResult> Index()
         {
             var manejoempleadosContext = _context.Empleados.Include(e => e.DepartamentoPuesto);
@@ -59,16 +59,14 @@ namespace ManejoDeEmpleados.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Telefono,Correo,FechaNacimiento,DepartamentoPuestoId,FechaContratacion,SueldoEmpleado")] Empleado empleado,ConsumoEmpleado consumo)
         {
             if (ModelState.IsValid)
             {
                 ServiceEmpleado service = new();
-                ServiceNomina SerNomina = new();
                 service.GenerarSecuencia(empleado);
                 _context.Add(empleado);
                 await _context.SaveChangesAsync();
-                SerNomina.AddNomina(empleado);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartamentoPuestoId"] = new SelectList(_context.Departamentopuestos, "Id", "Nombre", empleado.DepartamentoPuestoId);

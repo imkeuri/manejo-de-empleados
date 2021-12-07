@@ -24,6 +24,7 @@ namespace ManejoDeEmpleados.Models
         public virtual DbSet<Aspnetuserlogin> Aspnetuserlogins { get; set; }
         public virtual DbSet<Aspnetuserrole> Aspnetuserroles { get; set; }
         public virtual DbSet<Aspnetusertoken> Aspnetusertokens { get; set; }
+        public virtual DbSet<ConsumoEmpleado> ConsumoEmpleados { get; set; }
         public virtual DbSet<Departamentocl> Departamentocls { get; set; }
         public virtual DbSet<Departamentopuesto> Departamentopuestos { get; set; }
         public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
@@ -38,19 +39,20 @@ namespace ManejoDeEmpleados.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql"));
-
+                optionsBuilder.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasCharSet("utf8mb4")
-                .UseCollation("utf8mb4_0900_ai_ci");
+                .UseCollation("utf8mb4_general_ci");
 
             modelBuilder.Entity<Aspnetrole>(entity =>
             {
                 entity.ToTable("aspnetroles");
+
+                entity.UseCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
                     .IsUnique();
@@ -64,7 +66,11 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("aspnetroleclaims");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.RoleId).IsRequired();
 
@@ -78,10 +84,14 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("aspnetusers");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
 
                 entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
                     .IsUnique();
+
+                entity.Property(e => e.AccessFailedCount).HasColumnType("int(11)");
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
@@ -98,7 +108,11 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("aspnetuserclaims");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.UserId).IsRequired();
 
@@ -115,6 +129,8 @@ namespace ManejoDeEmpleados.Models
                     .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
                 entity.ToTable("aspnetuserlogins");
+
+                entity.UseCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
 
@@ -138,6 +154,8 @@ namespace ManejoDeEmpleados.Models
 
                 entity.ToTable("aspnetuserroles");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
 
                 entity.HasOne(d => d.Role)
@@ -159,6 +177,8 @@ namespace ManejoDeEmpleados.Models
 
                 entity.ToTable("aspnetusertokens");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.Property(e => e.LoginProvider).HasMaxLength(128);
 
                 entity.Property(e => e.Name).HasMaxLength(128);
@@ -169,11 +189,30 @@ namespace ManejoDeEmpleados.Models
                     .HasConstraintName("FK_AspNetUserTokens_AspNetUsers_UserId");
             });
 
+            modelBuilder.Entity<ConsumoEmpleado>(entity =>
+            {
+                entity.ToTable("consumo_empleado");
+
+                entity.HasIndex(e => e.EmpleadoId, "FK_Empleado_ConsumoEmpleado_ConsumoEmpleadoId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Cafeteria).HasColumnType("int(11)");
+
+                entity.Property(e => e.EmpleadoId).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.Empleado)
+                    .WithMany(p => p.ConsumoEmpleados)
+                    .HasForeignKey(d => d.EmpleadoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Empleado_ConsumoEmpleado_ConsumoEmpleadoId");
+            });
+
             modelBuilder.Entity<Departamentocl>(entity =>
             {
                 entity.ToTable("departamentocl");
 
-                entity.UseCollation("utf8mb4_general_ci");
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -188,9 +227,11 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("departamentopuestos");
 
-                entity.UseCollation("utf8mb4_general_ci");
-
                 entity.HasIndex(e => e.DepartamentoId, "FK_DepartamentoPuestos_DepartamentoCL_DepartamentoId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.DepartamentoId).HasColumnType("int(11)");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -210,6 +251,8 @@ namespace ManejoDeEmpleados.Models
 
                 entity.ToTable("__efmigrationshistory");
 
+                entity.UseCollation("utf8mb4_0900_ai_ci");
+
                 entity.Property(e => e.MigrationId).HasMaxLength(150);
 
                 entity.Property(e => e.ProductVersion)
@@ -221,19 +264,28 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("empleado");
 
-                entity.UseCollation("utf8mb4_general_ci");
+                entity.HasIndex(e => e.Codigo, "Codigo_UNIQUE")
+                    .IsUnique();
 
                 entity.HasIndex(e => e.DepartamentoPuestoId, "FK_Empleado_DepartamentoPuestos_DepartamentoPuestosId");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Apellido)
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.Codigo)
+                    .IsRequired()
+                    .HasMaxLength(45);
+
                 entity.Property(e => e.Correo)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.DepartamentoPuestoId).HasColumnType("int(11)");
 
                 entity.Property(e => e.FechaContratacion).HasColumnType("date");
 
@@ -242,6 +294,8 @@ namespace ManejoDeEmpleados.Models
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(255);
+
+                entity.Property(e => e.SueldoEmpleado).HasColumnType("int(11)");
 
                 entity.Property(e => e.Telefono)
                     .IsRequired()
@@ -258,11 +312,13 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("nomina");
 
-                entity.UseCollation("utf8mb4_general_ci");
-
                 entity.HasIndex(e => e.EmpleadoId, "FK_Nomina_Empleado_EmpleadoId");
 
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
                 entity.Property(e => e.Afp).HasColumnName("AFP");
+
+                entity.Property(e => e.EmpleadoId).HasColumnType("int(11)");
 
                 entity.Property(e => e.Isr).HasColumnName("ISR");
 
@@ -277,7 +333,7 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("usuario");
 
-                entity.UseCollation("utf8mb4_general_ci");
+                entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.Correo)
                     .IsRequired()
@@ -296,9 +352,11 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("vacaciones");
 
-                entity.UseCollation("utf8mb4_general_ci");
-
                 entity.HasIndex(e => e.EmpleadoId, "FK_Vacaciones_Empleado_EmpleadoId");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.EmpleadoId).HasColumnType("int(11)");
 
                 entity.Property(e => e.HastaVacaciones).HasColumnType("date");
 
@@ -315,11 +373,15 @@ namespace ManejoDeEmpleados.Models
             {
                 entity.ToTable("vacacionesestado");
 
-                entity.UseCollation("utf8mb4_general_ci");
-
                 entity.HasIndex(e => e.VacacionesId, "FK_VacacionesEstado_Vacaciones_VacionesId");
 
-                entity.Property(e => e.Estado).HasColumnName("estado");
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Estado)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("estado");
+
+                entity.Property(e => e.VacacionesId).HasColumnType("int(11)");
 
                 entity.HasOne(d => d.Vacaciones)
                     .WithMany(p => p.Vacacionesestados)

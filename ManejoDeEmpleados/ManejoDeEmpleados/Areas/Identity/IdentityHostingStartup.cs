@@ -17,7 +17,7 @@ namespace ManejoDeEmpleados.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<ManejoDeEmpleadosContext>(options =>
-                    options.UseMySql("server=localhost;uid=root;pwd=Solohome;database=manejoempleados", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql")));
+                    options.UseMySql("server=localhost;uid=root;pwd=mysql;database=manejoempleados;", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.25-mysql")));
 
                 services.AddDefaultIdentity<ManejoDeEmpleadosUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
