@@ -26,7 +26,7 @@ namespace ManejoDeEmpleados.Controllers
         }
 
         // GET: Vacaciones
-        public async Task<IActionResult> Index(string? codigo)
+        public async Task<IActionResult> Index(string codigo)
         {
             ServiceEmpleado service = new();
             ServiceNomina SerNomina = new();
@@ -61,6 +61,12 @@ namespace ManejoDeEmpleados.Controllers
                 return NotFound("Debes de tener por lo menos un año para poder solicitar Vacaciones");
             }
 
+            var manejoempleadosContext = _context.Vacaciones.Include(v => v.Empleado);
+            return View(await manejoempleadosContext.ToListAsync());
+        }
+        
+        public async Task<IActionResult> List()
+        {
             var manejoempleadosContext = _context.Vacaciones.Include(v => v.Empleado);
             return View(await manejoempleadosContext.ToListAsync());
         }
@@ -193,7 +199,7 @@ namespace ManejoDeEmpleados.Controllers
             var vacacione = await _context.Vacaciones.FindAsync(id);
             _context.Vacaciones.Remove(vacacione);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
 
         private bool VacacioneExists(int id)

@@ -1,12 +1,18 @@
-﻿@model IEnumerable<ManejoDeEmpleados.Models.Vacacione>
+﻿@using Microsoft.AspNetCore.Identity
+@using ManejoDeEmpleados.Areas.Identity.Data
+
+@inject SignInManager<ManejoDeEmpleadosUser> SignInManager
+@inject UserManager<ManejoDeEmpleadosUser> UserManager
+
+@model IEnumerable<ManejoDeEmpleados.Models.Vacacione>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listado de Vacaciones</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Solicitar Vacaciones</a>
 </p>
 <table class="table">
     <thead>
@@ -24,23 +30,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InicioVacaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HastaVacaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empleado.Apellido)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InicioVacaciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HastaVacaciones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empleado.Apellido)
+                </td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

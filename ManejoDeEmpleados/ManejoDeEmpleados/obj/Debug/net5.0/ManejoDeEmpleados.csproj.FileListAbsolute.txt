@@ -424,3 +424,10 @@ C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmplea
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Edit.cshtml.g.cs
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Index.cshtml.g.cs
 C:\Users\ARCUS COMP\Desktop\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\VerificarCodigo.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Create.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Delete.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Details.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Edit.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\ConsumoEmpleadoes\Index.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\VerificarCodigo.cshtml.g.cs
+C:\Users\lisan\OneDrive\Escritorio\ITLA\TAREAS C6\Ing Software\manejo-de-empleados\ManejoDeEmpleados\ManejoDeEmpleados\obj\Debug\net5.0\Razor\Views\Vacaciones\List.cshtml.g.cs
